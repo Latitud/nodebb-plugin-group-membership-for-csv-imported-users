@@ -1,6 +1,6 @@
 {
-	"id": "nodebb-plugin-quickstart",
-	"url": "https://github.com/NodeBB/nodebb-plugin-quickstart",
+	"id": "nodebb-plugin-group-membership-for-user-csv-importing",
+	"url": "https://github.com/Latitud/nodebb-plugin-group-membership-for-user-csv-importing",
 	"library": "./library.js",
 	"hooks": [
 		{ "hook": "static:app.load", "method": "init" },

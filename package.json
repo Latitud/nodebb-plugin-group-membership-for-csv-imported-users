@@ -1,17 +1,15 @@
 {
-  "name": "nodebb-plugin-quickstart",
-  "version": "0.4.3",
-  "description": "A starter kit for quickly creating NodeBB plugins",
+  "name": "nodebb-plugin-group-membership-for-user-csv-importing",
+  "version": "0.0.1",
+  "description": "TBD",
   "main": "library.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/nodebb/nodebb-plugin-quickstart"
+    "url": "https://github.com/Latitud/nodebb-plugin-group-membership-for-user-csv-importing"
   },
   "keywords": [
     "nodebb",
-    "plugin",
-    "quickstart",
-    "shell"
+    "plugin"
   ],
   "husky": {
     "hooks": {
@@ -27,7 +25,7 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/nodebb/nodebb-plugin-quickstart/issues"
+    "url": "https://github.com/Latitud/nodebb-plugin-group-membership-for-user-csv-importing/issues"
   },
   "readmeFilename": "README.md",
   "nbbpm": {
