@@ -11,6 +11,26 @@ const routeHelpers = require.main.require('./src/routes/helpers');
 
 const plugin = {};
 
+plugin.createGroupMemberships = async ({uids}) => {
+	const User = require.main.require('./src/user');
+	
+	console.log("group-membership-for-user-csv-importing: Membership creation started.");
+	console.log(`group-membership-for-user-csv-importing: Memberships will be created for the following uids: ${uids}.`);
+	
+	const createdUsers = await User.getUsersWithFields(uids,['uid', 'groups_to_import',],0);
+	
+	createdUsers.forEach((user) => {
+		const groups = user.groups_to_import.split(",");
+		groups.forEach((group) => {
+			console.log(`group-membership-for-user-csv-importing: MOCKING MEMBERSHIP CREATION.`);	
+			console.log(`group-membership-for-user-csv-importing: User ${user.uid} is now a member of group ${group}.`);	
+		})
+	})
+	
+	console.log("group-membership-for-user-csv-importing: Membership creation finished.")
+
+}
+
 plugin.init = async (params) => {
 	const { router /* , middleware , controllers */ } = params;
 
