@@ -38,10 +38,10 @@ plugin.init = async (params) => {
 	const { router /* , middleware , controllers */ } = params;
 
 	// Settings saved in the plugin settings can be retrieved via settings methods
-	const { setting1, setting2 } = await meta.settings.get('quickstart');
-	if (setting1) {
-		console.log(setting2);
-	}
+	//const { setting1, setting2 } = await meta.settings.get('quickstart');
+	//if (setting1) {
+	//		console.log(setting2);
+	//}
 
 	/**
 	 * We create two routes for every view. One API call, and the actual route itself.
@@ -49,15 +49,15 @@ plugin.init = async (params) => {
 	 *
 	 * Other helpers include `setupAdminPageRoute` and `setupAPIRoute`
 	 * */
-	routeHelpers.setupPageRoute(router, '/quickstart', [(req, res, next) => {
-		winston.info(`[plugins/quickstart] In middleware. This argument can be either a single middleware or an array of middlewares`);
+	routeHelpers.setupPageRoute(router, '/nodebb-plugin-group-membership-for-user-csv-importing', [(req, res, next) => {
+		winston.info(`[plugins/nodebb-plugin-group-membership-for-user-csv-importing] In middleware. This argument can be either a single middleware or an array of middlewares`);
 		setImmediate(next);
 	}], (req, res) => {
-		winston.info(`[plugins/quickstart] Navigated to ${nconf.get('relative_path')}/quickstart`);
+		winston.info(`[plugins/nodebb-plugin-group-membership-for-user-csv-importing] Navigated to ${nconf.get('relative_path')}/nodebb-plugin-group-membership-for-user-csv-importing`);
 		res.render('quickstart', { uid: req.uid });
 	});
 
-	routeHelpers.setupAdminPageRoute(router, '/admin/plugins/quickstart', controllers.renderAdminPage);
+	routeHelpers.setupAdminPageRoute(router, '/admin/plugins/nodebb-plugin-group-membership-for-user-csv-importing', controllers.renderAdminPage);
 };
 
 /**
@@ -100,9 +100,9 @@ plugin.addRoutes = async ({ router, middleware, helpers }) => {
 
 plugin.addAdminNavigation = (header) => {
 	header.plugins.push({
-		route: '/plugins/quickstart',
+		route: '/plugins/nodebb-plugin-group-membership-for-user-csv-importing',
 		icon: 'fa-tint',
-		name: 'Quickstart',
+		name: 'Import Users via CSV - Extension',
 	});
 
 	return header;
