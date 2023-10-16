@@ -1,11 +1,11 @@
 {
-  "name": "nodebb-plugin-group-membership-for-user-csv-importing",
+  "name": "@Latitud/nodebb-plugin-group-membership-for-user-csv-importing",
   "version": "0.0.1",
   "description": "TBD",
   "main": "library.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Latitud/nodebb-plugin-group-membership-for-user-csv-importing"
+    "url": "git+https://github.com/Latitud/nodebb-plugin-user-csv-importing-extension.git"
   },
   "keywords": [
     "nodebb",
@@ -39,5 +39,8 @@
     "eslint-plugin-import": "2.x",
     "husky": "8.0.3",
     "lint-staged": "14.0.1"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
   }
 }
