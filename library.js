@@ -15,8 +15,8 @@ plugin.createGroupMemberships = async ({uids}) => {
 	const User = require.main.require('./src/user');
 	const Groups = require.main.require('./src/groups');
 	
-	console.log(`group-membership-for-user-csv-importing: Membership creation started.`);
-	console.log(`group-membership-for-user-csv-importing: Memberships will be created for the following uids: ${uids}.`);
+	console.log(`user-csv-importing-extension: Membership creation started.`);
+	console.log(`user-csv-importing-extension: Memberships will be created for the following uids: ${uids}.`);
 	
 	const createdUsers = await User.getUsersWithFields(uids,['uid', 'groups_to_import',],0);
 	
@@ -24,14 +24,14 @@ plugin.createGroupMemberships = async ({uids}) => {
 		try {
 			const groupsToJoin = user.groups_to_import.split(",");
 			await Groups.join(groupsToJoin, user.uid);
-			console.log(`group-membership-for-user-csv-importing: User ${user.uid} is now a member of group ${groupsToJoin}.`);	
+			console.log(`user-csv-importing-extension: User ${user.uid} is now a member of group ${groupsToJoin}.`);	
 		} catch (error) {
-			console.error(`group-membership-for-user-csv-importing: An error occoured when creating group memberships!`);
+			console.error(`user-csv-importing-extension: An error occoured when creating group memberships!`);
 			console.error(error);
 		}
 	}))
 	
-	console.log("group-membership-for-user-csv-importing: Membership creation finished.");
+	console.log("user-csv-importing-extension: Membership creation finished.");
 }
 
 plugin.init = async (params) => {
