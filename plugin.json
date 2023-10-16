@@ -3,7 +3,7 @@
 	"url": "https://github.com/Latitud/nodebb-plugin-user-csv-importing-extension",
 	"library": "./library.js",
 	"hooks": [
-		{ "hook": "action:importUsersCSV.created", "method": "createGroupMemberships" },
+		{ "hook": "action:importUsersCSV.created", "method": "extendCreatedUsers" },
 		{ "hook": "static:app.load", "method": "init" },
 		{ "hook": "filter:admin.header.build", "method": "addAdminNavigation" }
 	],

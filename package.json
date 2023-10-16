@@ -1,6 +1,6 @@
 {
   "name": "@Latitud/nodebb-plugin-user-csv-importing-extension",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "TBD",
   "main": "library.js",
   "repository": {
