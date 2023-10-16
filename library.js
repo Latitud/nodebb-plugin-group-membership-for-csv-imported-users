@@ -10,15 +10,17 @@ const controllers = require('./lib/controllers');
 const routeHelpers = require.main.require('./src/routes/helpers');
 const User = require.main.require('./src/user');
 const Groups = require.main.require('./src/groups');
+const requesterUID = 0;
 
 const plugin = {};
 
 
 plugin.extendCreatedUsers = async ({uids}) => {
-	const createdUsers = await User.getUsersWithFields(uids,['uid', 'groups_to_import',],0);
+	const fields = ['uid', 'groups_to_import','fullname', 'website', 'location',
+	'groupTitle', 'birthday', 'signature', 'aboutme',];
+	const createdUsers = await User.getUsersWithFields(uids,fields,requesterUID);
 
 	plugin.createGroupMemberships(createdUsers);
-	plugin.updateProfileFields(createdUsers);
 }
 
 plugin.createGroupMemberships = async (createdUsers) => {
@@ -39,26 +41,6 @@ plugin.createGroupMemberships = async (createdUsers) => {
 	}))
 	
 	console.log("user-csv-importing-extension: Membership creation finished.");
-}
-
-plugin.updateProfileFields = async (createdUsers) => {
-	console.log(`user-csv-importing-extension: Profile update started.`);
-	console.log(`user-csv-importing-extension: Profiles will be updated for the following uids: ${createdUsers.map(user=>user.uid)}.`);
-	
-	//await Promise.all(createdUsers.map(async (user) => {
-	//	try {
-	//		if(user.groups_to_import){
-	//			const groupsToJoin = user.groups_to_import.split(",");
-	//			await Groups.join(groupsToJoin, user.uid);
-	//			console.log(`user-csv-importing-extension: User ${user.uid} is now a member of group ${groupsToJoin}.`);	
-	//		}
-	//	} catch (error) {
-	//		console.error(`user-csv-importing-extension: An error occoured when creating group memberships!`);
-	//		console.error(error);
-	//	}
-	//}))
-	
-	console.log("user-csv-importing-extension: Profile update finished.");
 }
 
 plugin.init = async (params) => {
