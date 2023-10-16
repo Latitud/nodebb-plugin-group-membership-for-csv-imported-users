@@ -1,5 +1,5 @@
 {
-  "name": "@Latitud/nodebb-plugin-group-membership-for-user-csv-importing",
+  "name": "@Latitud/nodebb-plugin-user-csv-importing-extension",
   "version": "0.0.1",
   "description": "TBD",
   "main": "library.js",
@@ -25,7 +25,7 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Latitud/nodebb-plugin-group-membership-for-user-csv-importing/issues"
+    "url": "https://github.com/Latitud/nodebb-plugin-user-csv-importing-extension/issues"
   },
   "readmeFilename": "README.md",
   "nbbpm": {

@@ -37,19 +37,19 @@ plugin.createGroupMemberships = async ({uids}) => {
 plugin.init = async (params) => {
 	const { router } = params;
 
-	routeHelpers.setupPageRoute(router, '/nodebb-plugin-group-membership-for-user-csv-importing', [(req, res, next) => {
+	routeHelpers.setupPageRoute(router, '/nodebb-plugin-user-csv-importing-extension', [(req, res, next) => {
 		setImmediate(next);
 	}], (req, res) => {
-		winston.info(`[plugins/nodebb-plugin-group-membership-for-user-csv-importing] Navigated to ${nconf.get('relative_path')}/nodebb-plugin-group-membership-for-user-csv-importing`);
+		winston.info(`[plugins/nodebb-plugin-user-csv-importing-extension] Navigated to ${nconf.get('relative_path')}/nodebb-plugin-user-csv-importing-extension`);
 		res.render('quickstart', { uid: req.uid });
 	});
 
-	routeHelpers.setupAdminPageRoute(router, '/admin/plugins/nodebb-plugin-group-membership-for-user-csv-importing', controllers.renderAdminPage);
+	routeHelpers.setupAdminPageRoute(router, '/admin/plugins/nodebb-plugin-user-csv-importing-extension', controllers.renderAdminPage);
 };
 
 plugin.addAdminNavigation = (header) => {
 	header.plugins.push({
-		route: '/plugins/nodebb-plugin-group-membership-for-user-csv-importing',
+		route: '/plugins/nodebb-plugin-user-csv-importing-extension',
 		icon: 'fa-tint',
 		name: 'Import Users via CSV - Extension',
 	});

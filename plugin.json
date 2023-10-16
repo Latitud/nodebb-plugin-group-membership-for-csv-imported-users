@@ -1,6 +1,6 @@
 {
-	"id": "nodebb-plugin-group-membership-for-user-csv-importing",
-	"url": "https://github.com/Latitud/nodebb-plugin-group-membership-for-user-csv-importing",
+	"id": "nodebb-plugin-user-csv-importing-extension",
+	"url": "https://github.com/Latitud/nodebb-plugin-user-csv-importing-extension",
 	"library": "./library.js",
 	"hooks": [
 		{ "hook": "action:importUsersCSV.created", "method": "createGroupMemberships" },
