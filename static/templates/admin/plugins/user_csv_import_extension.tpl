@@ -37,6 +37,28 @@
 				</div>
 
 				<div class="mb-4">
+					<h5 class="fw-bold tracking-tight settings-header">Updating users profile pictures</h5>
+
+					<p>
+						To update profile pictures when creating users:
+					</p>
+					
+					<ul>
+						<li>Add a "profile_picture_url" column to you .csv file</li>
+						<li>Add "profile_picture_url" to the "Additional Fields" list</li>
+					</ul>
+
+					<p>
+						The "profile_picture_url" expects a URL to an .png, .jpeg or .jpg image.
+					</p>
+
+					<p class="alert alert-warning" id="group_to_import_format">
+						The image will not be cropped. Try to use square images.
+					</p>
+
+				</div>
+
+				<div class="mb-4">
 					<h5 class="fw-bold tracking-tight settings-header">Updating users profile fields</h5>
 
 					<p>

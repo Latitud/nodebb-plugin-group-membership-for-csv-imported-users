@@ -17,10 +17,46 @@ const plugin = {};
 
 plugin.extendCreatedUsers = async ({uids}) => {
 	const fields = ['uid', 'groups_to_import','fullname', 'website', 'location',
-	'groupTitle', 'birthday', 'signature', 'aboutme',];
+	'groupTitle', 'birthday', 'signature', 'aboutme','profile_picture_url'];
 	const createdUsers = await User.getUsersWithFields(uids,fields,requesterUID);
 
-	plugin.createGroupMemberships(createdUsers);
+	plugin.createGroupMemberships(createdUsers.filter(user => user.groups_to_import));
+	plugin.updateProfilePicture(createdUsers.filter(user => user.profile_picture_url));
+}
+
+plugin.updateProfilePicture = async (createdUsers) => {
+	console.log(`user-csv-importing-extension: User profile picture update started.`);
+	console.log(`user-csv-importing-extension: User profile picture be updated for the following uids: ${createdUsers.map(user=>user.uid)}.`);
+	
+	await Promise.all(createdUsers.map(async (user) => {
+		try {
+			await User.setUserField(user.uid, 'picture', user.profile_picture_url)
+			console.log(`user-csv-importing-extension: Profile picture of user ${user.uid} is now updated.`);	
+		} catch (error) {
+			console.error(`user-csv-importing-extension: An error occoured when updating profile pictures!`);
+			console.error(error);
+		}
+	}))
+	
+	console.log("user-csv-importing-extension: Membership creation finished.");
+}
+
+plugin.createGroupMemberships = async (createdUsers) => {
+	console.log(`user-csv-importing-extension: Membership creation started.`);
+	console.log(`user-csv-importing-extension: Memberships will be created for the following uids: ${createdUsers.map(user=>user.uid)}.`);
+	
+	await Promise.all(createdUsers.map(async (user) => {
+		try {
+			const groupsToJoin = user.groups_to_import.split(",");
+			await Groups.join(groupsToJoin, user.uid);
+			console.log(`user-csv-importing-extension: User ${user.uid} is now a member of group ${groupsToJoin}.`);
+		} catch (error) {
+			console.error(`user-csv-importing-extension: An error occoured when creating group memberships!`);
+			console.error(error);
+		}
+	}))
+	
+	console.log("user-csv-importing-extension: Membership creation finished.");
 }
 
 plugin.createGroupMemberships = async (createdUsers) => {
